@@ -4,7 +4,6 @@ services:
     build: .
     restart: always
     environment:
-      - APP_NAME=flaskApp
       - PYTHONPATH=/home/myuser
     ports:
       - 80:5000
