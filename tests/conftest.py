@@ -2,7 +2,7 @@ import os
 import tempfile
 
 import pytest
-from flaskApp import create_app
+from flaskApp.app import create_app
 from flaskApp.db import get_db
 from flaskApp.db import init_db
 
