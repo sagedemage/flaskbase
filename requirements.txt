@@ -7,5 +7,5 @@ pycodestyle
 pytest-pylint
 gunicorn
 uwsgi
-Jinga2
+Jinja2
 Werkzeug
