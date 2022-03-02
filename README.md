@@ -7,7 +7,7 @@
 
 [![Development Workflow](https://github.com/kaw393939/docker_flask/actions/workflows/dev.yml/badge.svg)](https://github.com/kaw393939/docker_flask/actions/workflows/dev.yml)
 
-* [Developmental Deployment](https://kwilliam-dev.herokuapp.com/)
+* [Developmental Deployment](https://sagedemage-dev.herokuapp.com/)
 
 This project is using code from these tutorials and is being adapted to develop a tutorial on CI/CD with AWS
 and Python Flask
