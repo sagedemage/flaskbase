@@ -1,3 +1,4 @@
+"""Testing Authentication"""
 import pytest
 from flask import g
 from flask import session
@@ -6,6 +7,7 @@ from flaskApp.db import get_db
 
 
 def test_register(client, app):
+    """ Test register """
     # test that viewing the page renders without template errors
     assert client.get("/auth/register").status_code == 200
 
@@ -30,6 +32,7 @@ def test_register(client, app):
     ),
 )
 def test_register_validate_input(client, username, password, message):
+    """ Test register validation"""
     response = client.post(
         "/auth/register", data={"username": username, "password": password}
     )
@@ -37,6 +40,7 @@ def test_register_validate_input(client, username, password, message):
 
 
 def test_login(client, auth):
+    """ Test Login """
     # test that viewing the page renders without template errors
     assert client.get("/auth/login").status_code == 200
 
@@ -57,11 +61,13 @@ def test_login(client, auth):
     (("a", "test", b"Incorrect username."), ("test", "a", b"Incorrect password.")),
 )
 def test_login_validate_input(auth, username, password, message):
+    """ Test login validation """
     response = auth.login(username, password)
     assert message in response.data
 
 
 def test_logout(client, auth):
+    """ Test logout """
     auth.login()
 
     with client:
