@@ -5,7 +5,7 @@
 
 -----
 
-[![Development Workflow](https://github.com/sagedemage/flaskbase/actions/workflows/dev.yml/badge.svg)](https://github.com/kaw393939/docker_flask/actions/workflows/dev.yml)
+[![Development Workflow](https://github.com/sagedemage/flaskbase/actions/workflows/dev.yml/badge.svg)](https://github.com/sagedemage/flaskbase/actions/workflows/dev.yml)
 
 * [Developmental Deployment](https://sagedemage-dev.herokuapp.com/)
 
