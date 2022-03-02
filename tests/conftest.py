@@ -1,3 +1,4 @@
+"""Configuration Test"""
 import os
 import tempfile
 
@@ -11,6 +12,7 @@ with open(os.path.join(os.path.dirname(__file__), "data.sql"), "rb") as f:
     _data_sql = f.read().decode("utf8")
 
 
+# pylint: disable=redefined-outer-name
 @pytest.fixture
 def app():
     """Create and configure a new app instance for each test."""
@@ -44,18 +46,22 @@ def runner(app):
 
 
 class AuthActions:
+    """Authentication Actions"""
     def __init__(self, client):
         self._client = client
 
     def login(self, username="test", password="test"):
+        """Login the user"""
         return self._client.post(
             "/auth/login", data={"username": username, "password": password}
         )
 
     def logout(self):
+        """Logout the user"""
         return self._client.get("/auth/logout")
 
 
 @pytest.fixture
 def auth(client):
+    """Authenticate the user"""
     return AuthActions(client)
