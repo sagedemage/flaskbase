@@ -7,7 +7,7 @@
 
 [![Development Workflow](https://github.com/sagedemage/flaskbase/actions/workflows/dev.yml/badge.svg)](https://github.com/sagedemage/flaskbase/actions/workflows/dev.yml)
 
-* [Developmental Deployment](https://sagedemage-dev.herokuapp.com/)
+* [Development Deployment](https://sagedemage-dev.herokuapp.com/)
 
 This project is using code from these tutorials and is being adapted to develop a tutorial on CI/CD with AWS
 and Python Flask
