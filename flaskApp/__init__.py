@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask import render_template
 from flaskApp import db, auth, blog
 
 
@@ -13,7 +14,6 @@ def create_app(test_config=None):
         # store the database in the instance folder
         DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),
     )
-
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -34,7 +34,6 @@ def create_app(test_config=None):
 
     # register the database commands
 
-
     db.init_app(app)
     # apply the blueprints to the app
     app.register_blueprint(auth.bp)
@@ -48,4 +47,13 @@ def create_app(test_config=None):
         port = int(os.environ.get("PORT", 5000))
         app.run(host='0.0.0.0', port=port)
     return app
+
+
 app = create_app()
+
+
+@app.errorhandler(404)
+# inbuilt function which takes error as parameter
+def not_found(e):
+    # defining function
+    return render_template("404.html")

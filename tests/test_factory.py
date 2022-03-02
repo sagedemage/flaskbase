@@ -1,3 +1,4 @@
+"""Test Factory"""
 from flaskApp import create_app
 
 
@@ -8,5 +9,6 @@ def test_config():
 
 
 def test_hello(client):
+    """Verify response value"""
     response = client.get("/hello")
     assert response.data == b"Hello, World!"
