@@ -3,7 +3,6 @@ import os
 from flask import Flask
 from flask import render_template
 from flaskApp import db, auth, blog
-from flask_bootstrap import Bootstrap
 
 
 def create_app(test_config=None):
