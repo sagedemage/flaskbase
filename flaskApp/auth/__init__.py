@@ -8,12 +8,21 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 
 from flaskApp.db import get_db
 
 bp = Blueprint("auth", __name__, template_folder='templates', url_prefix="/auth")
+
+
+class MyForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Log In')
 
 
 def login_required(view):
@@ -78,7 +87,7 @@ def register():
 
         flash(error)
 
-    return render_template("auth/register.html")
+    return render_template("auth/register.html", form=MyForm())
 
 
 @bp.route("/login", methods=("GET", "POST"))
@@ -106,7 +115,7 @@ def login():
 
         flash(error)
 
-    return render_template("auth/login.html")
+    return render_template("auth/login.html", form=MyForm())
 
 
 @bp.route("/logout")

@@ -9,3 +9,6 @@ gunicorn
 uwsgi
 Jinja2
 Werkzeug
+bootstrap-flask
+WTForms
+Flask-WTF

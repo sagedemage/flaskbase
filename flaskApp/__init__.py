@@ -1,8 +1,10 @@
 import os
 
-from flask import Flask
-from flask import render_template
-from flaskApp import db, auth, blog
+from flask import Flask, render_template, abort
+from flaskApp import db, auth, blog, simple_pages
+from flaskApp.context_processors import utility_text_processors
+from flask_bootstrap import Bootstrap5
+from jinja2 import TemplateNotFound
 
 
 def create_app(test_config=None):
@@ -32,17 +34,29 @@ def create_app(test_config=None):
     def hello():
         return "Hello, World!"
 
-    # register the database commands
+    @app.route('/<arg1>')
+    def show(arg1):
+        try:
+            return render_template('%s.html' % arg1)
+        except TemplateNotFound:
+            abort(404)
 
+    # register the database commands
     db.init_app(app)
     # apply the blueprints to the app
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
+    app.register_blueprint(simple_pages.bp)
+    bootstrap = Bootstrap5(app)
+    app.config['BOOTSTRAP_BOOTSWATCH_THEME'] = 'slate'
+
     # make url_for('index') == url_for('blog.index')
     # in another app, you might define a separate main index here with
     # app.route, while giving the blog blueprint a url_prefix, but for
     # the tutorial the blog will be the main index
     app.add_url_rule("/", endpoint="index")
+    app.context_processor(utility_text_processors)
+
     if __name__ == '__main__':
         port = int(os.environ.get("PORT", 5000))
         app.run(host='0.0.0.0', port=port)
@@ -54,6 +68,6 @@ app = create_app()
 
 @app.errorhandler(404)
 # inbuilt function which takes error as parameter
-def not_found(e):
+def page_not_found(e):
     # defining function
     return render_template("404.html")
