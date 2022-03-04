@@ -22,7 +22,8 @@ bp = Blueprint("auth", __name__, template_folder='templates', url_prefix="/auth"
 class MyForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Log In')
+    login = SubmitField('Log In')
+    register = SubmitField('Register')
 
 
 def login_required(view):
